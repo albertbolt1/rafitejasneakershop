@@ -36,9 +36,12 @@ namespace YetAnotherShoppingApp
         /// </summary>
         public static readonly Product[] ProductList = new Product[]
         {
-            new Product("😃", "Happy face", "A beautiful smile to brighten up your day.", 10.00m, ShippingCostCategories.MediumItem),
-            new Product("😟", "Unhappy face", "A depressing frown that brings you back down to reality.", -0.50m, ShippingCostCategories.SmallItem),
-            new Product("🐱‍👤", "Ninja cat", "Will fix everything.", 1000.00m, ShippingCostCategories.LargeItem),
+            new Product("/Assets/Jordan.jpg", "Jordan 1 RED BLACK", "Red and black classic collection", 80.00m, ShippingCostCategories.MediumItem),
+            new Product("/Assets/Jordan2.jpg", "Jordan 2 BLACK", "Black and grey total comfort", 100.50m, ShippingCostCategories.SmallItem),
+            new Product("/Assets/Jordan3.jpg", "Jordan 3 BLACK GREY", "black and grey print , crazy!!", 100.00m, ShippingCostCategories.LargeItem),
+            new Product("/Assets/Jordan4.jpg", "Jordan 4 RED WHITE", "crazy colorway , Special edition", 110.00m, ShippingCostCategories.MediumItem),
+            new Product("/Assets/Jordan5.jpg", "JORDAN 5 WHITE BLUE", "A depressing frown that brings you back down to reality.", 70.00m, ShippingCostCategories.SmallItem),
+            new Product("/Assets/Jordan6.jpg", "JORDAN 6 RED WHITE", "Will fix everything.", 90.00m, ShippingCostCategories.LargeItem)
         };
     }
 }

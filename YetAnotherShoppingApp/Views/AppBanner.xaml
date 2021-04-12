@@ -40,7 +40,7 @@ THE SOFTWARE.
             </Grid.ColumnDefinitions>
             <TextBlock
                 Grid.Column="0"
-                Text="Yet Another Shopping App"
+                Text="RAFI AND TEJA DECATHLON"
                 FontSize="25"
                 Tapped="LogoTapped"
                 />

@@ -100,20 +100,9 @@ THE SOFTWARE.
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="100" />
-                                            <ColumnDefinition Width="70" />
+                                            <ColumnDefinition Width="100" />
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock
-                                            Grid.Column="0"
-                                            FontFamily="Segoe UI Emoji"
-                                            Text="{x:Bind Path=Product.ImageEmojiText, Mode=OneWay, FallbackValue=&#x263A;}"
-                                            FontSize="40"
-                                            LineHeight="45"
-                                            LineStackingStrategy="BlockLineHeight"
-                                            IsColorFontEnabled="true"
-                                            Foreground="Red"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            />
+                                        <Image Source="{x:Bind Path=Product.ImageEmojiText}" Height="70" Width="70"/>
                                         <StackPanel
                                             Grid.Column="1"
                                             HorizontalAlignment="Left"

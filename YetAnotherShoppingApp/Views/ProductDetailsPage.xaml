@@ -50,17 +50,8 @@ THE SOFTWARE.
                 FontSize="40"
                 TextWrapping="WrapWholeWords"
                 />
-            <TextBlock
-                FontFamily="Segoe UI Emoji"
-                Text="{x:Bind Path=ViewModel.Product.ImageEmojiText, Mode=OneWay, FallbackValue=&#x263A;}"
-                FontSize="200"
-                LineHeight="225"
-                LineStackingStrategy="BlockLineHeight"
-                IsColorFontEnabled="true"
-                Foreground="Red"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                />
+            <Image Source="{x:Bind Path=ViewModel.Product.ImageEmojiText}" Height="200" Width="200"/>
+
             <TextBlock
                 Text="{x:Bind Path=ViewModel.Product.Description, FallbackValue='THE LONG PRODUCT DESCRIPTION'}"
                 TextWrapping="WrapWholeWords"
