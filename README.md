@@ -56,3 +56,4 @@ following files for examples of some highlighted features:
 	- Uses [PaymentMediator.SubmitPaymentRequestAsync](https://docs.microsoft.com/uwp/api/windows.applicationmodel.payments.paymentmediator#Windows_ApplicationModel_Payments_PaymentMediator_SubmitPaymentRequestAsync_) to initiate the checkout experience.
 * [BasicCardPaymentProtocol.cs](YetAnotherShoppingApp/Models/BasicCardPaymentProtocol.cs#L25)
 	- Handles the boilerplate of the [W3C Basic Card Payment Method](https://www.w3.org/TR/payment-method-basic-card/).
+"# rafitejasneakershop" 
