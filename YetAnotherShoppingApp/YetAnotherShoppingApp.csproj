@@ -95,17 +95,12 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\AppState.cs" />
-    <Compile Include="Models\BasicCardPaymentProtocol.cs" />
-    <Compile Include="Models\MicrosoftPayProtocol.cs" />
     <Compile Include="Utilities\LinqExtensions.cs" />
+    <Compile Include="Views\BlankPage1.xaml.cs">
+      <DependentUpon>BlankPage1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\NotificationBase.cs" />
-    <Compile Include="Views\ShippingTypeStringUtilities.cs" />
     <Compile Include="Views\PriceStringUtilities.cs" />
-    <Compile Include="Views\WindowsPaymentOperation.cs" />
-    <Compile Include="Models\ShippingCostCategories.cs" />
-    <Compile Include="Models\ShippingCost.cs" />
-    <Compile Include="Models\ShippingFixedCosts.cs" />
-    <Compile Include="Models\ShippingType.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Models\ShoppingCartChangedEventArgs.cs" />
     <Compile Include="Views\AppBanner.xaml.cs">
@@ -165,9 +160,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\BlankPage1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\FrontPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainPage1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ProductDetailsPage.xaml">
       <SubType>Designer</SubType>

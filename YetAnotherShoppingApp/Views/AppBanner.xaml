@@ -43,6 +43,8 @@ THE SOFTWARE.
                 Text="RAFI AND TEJA DECATHLON"
                 FontSize="25"
                 Tapped="LogoTapped"
+                TextAlignment="Center"
+                FontWeight="ExtraBold"
                 />
             <local:ShoppingCartIcon
                 Grid.Column="1"

@@ -30,22 +30,24 @@ namespace YetAnotherShoppingApp
 {
     public static class PriceStringUtilities
     {
-        private static readonly CultureInfo USDCulture = new CultureInfo("en-US");
+        //private static readonly CultureInfo USDCulture = new CultureInfo("en-US");
 
-        public static readonly string Currency = "USD";
+        private static readonly CultureInfo INDCulture = new CultureInfo("en-IN");
+
+        public static readonly string Currency = "Rs";
 
         /// <summary>
         /// Correctly formats a price as a string.
         /// </summary>
         public static string CreatePriceString(decimal cost)
         {
-            return String.Format(USDCulture, "{0:C}", cost);
+            return String.Format(INDCulture, "{0:C}", cost);
         }
 
         public static string CreatePriceString(PaymentCurrencyAmount cost)
         {
             decimal value = FromInvariantString(cost.Value);
-            return String.Format(USDCulture, "{0:C}", value);
+            return String.Format(INDCulture, "{0:C}", value);
         }
 
         public static string ToInvariantString(decimal cost)

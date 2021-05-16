@@ -36,6 +36,7 @@ THE SOFTWARE.
             Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
             Padding="8"
             >
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -47,7 +48,7 @@ THE SOFTWARE.
                 Grid.Row="1"
                 VerticalScrollBarVisibility="Visible"
                 VerticalScrollMode="Enabled"
-                Padding="0,0,24,0"
+                Padding="0,0,24,0" ViewChanged="ScrollViewer_ViewChanged"
                 >
                 <StackPanel>
                     <Grid
@@ -102,7 +103,7 @@ THE SOFTWARE.
                                             <ColumnDefinition Width="100" />
                                             <ColumnDefinition Width="100" />
                                         </Grid.ColumnDefinitions>
-                                        <Image Source="{x:Bind Path=Product.ImageEmojiText}" Height="70" Width="70"/>
+                                        <Image Source="{x:Bind Path=Product.ImageText}" Height="70" Width="70"/>
                                         <StackPanel
                                             Grid.Column="1"
                                             HorizontalAlignment="Left"
@@ -189,13 +190,7 @@ THE SOFTWARE.
                                 >
                                 <Run Text="+ est. shipping (" /><Run Text="{x:Bind Path=ViewModel.ShippingTypeString, Mode=OneWay, FallbackValue='SHIPPING TYPE'}" /><Run Text="):" />
                             </TextBlock>
-                            <TextBlock
-                                Grid.Column="1"
-                                Grid.Row="1"
-                                Foreground="Maroon"
-                                HorizontalAlignment="Right"
-                                Text="{x:Bind Path=ViewModel.EstimatedShippingString, Mode=OneWay, FallbackValue='SHIPPING'}"
-                                />
+                        
                             <TextBlock
                                 Grid.Column="0"
                                 Grid.Row="2"
@@ -225,15 +220,102 @@ THE SOFTWARE.
                                 Text="{x:Bind Path=ViewModel.TotalCostString, Mode=OneWay, FallbackValue='TOTAL'}"
                                 />
                         </Grid>
-                        <Button
-                            Content="Windows Checkout"
+                  
+                        <StackPanel>
+                            <Button Content="Checkout"
+                            Margin="0,8,0,0"
+                            Click="OnWindowsCheckoutClicked"
+                            Foreground="GhostWhite"
+                            HorizontalAlignment="Right"
+                            IsEnabled="{x:Bind Path=ViewModel.CheckoutButtonEnabled, Mode=OneWay}">
+                                <Button.Background>
+                                    <LinearGradientBrush
+                                    StartPoint="0.5,0"
+                                    EndPoint="0.5,1"
+                                    >
+                                        <GradientStop Color="#FFFF4040" Offset="0.0" />
+                                        <GradientStop Color="#FFA04040" Offset="1.0" />
+                                    </LinearGradientBrush>
+                                </Button.Background>
+
+                            </Button>
+
+
+                        </StackPanel>
+                        <Popup VerticalOffset="0" HorizontalOffset="200" x:Name="StandardPopup">
+                            <Border BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" 
+                Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
+                BorderThickness="2" Width="500" Height="300">
+                                <!-- left top right bottom-->
+                                <StackPanel Spacing="20" Background="Gray" Padding="20 0 0 0">
+                                    <StackPanel Orientation="Horizontal" Spacing="5" Padding="0 10 0 0" >
+                                        <TextBlock Text="NAME ON CARD" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                        <TextBox Width="300"  PlaceholderText="NAME ON CARD HERE" Margin="10 0 0 0"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="5">
+                                        <TextBlock Text="CARD NUMBER" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <TextBox Width="300"  PlaceholderText="CARD NUMBER HERE" Margin="18 0 0 0" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="5">
+                                        <TextBlock Text="CVV" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <TextBox Width="100"  PlaceholderText="CVV HERE" Margin="94 0 0 0"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="5">
+                                        <TextBlock Text="EXPIRY DATE" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <TextBox Width="50"  PlaceholderText="MONTH" Margin="38 0 0 0" FontSize="10"/>
+                                        <TextBox Width="50"  PlaceholderText="YEAR" Margin="0 0 0 0" FontSize="10"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                                        <TextBlock Text="CLICK ON SUBMIT TO GET OTP" FontWeight="ExtraBold"  FontSize="10" HorizontalAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20">
+                                    <Button Content="Close" Click="ClosePopupClicked" HorizontalAlignment="Left"/>
+                                        <Button Content="Submit"  HorizontalAlignment="Right" Click="OnSubmitClicked"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </Popup>
+                        <Popup VerticalOffset="10" HorizontalOffset="200" x:Name="StandardPopup1">
+                            <Border BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" 
+                Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
+                BorderThickness="2" Width="400" Height="150">
+                                <!-- left top right bottom-->
+                                <StackPanel Spacing="20" Background="Gray" Padding="20 0 0 0">
+                                    <StackPanel Orientation="Horizontal" Spacing="5" Padding="0 10 0 0" >
+                                        <TextBlock Text="ENTER OTP" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                        <TextBox Width="100" FontSize="10" PlaceholderText="6 DIGIT OTP HERE" Margin="10 0 0 0"/>
+                                        
+                                    </StackPanel>
+                                    <Button Content="Submit"  Click="OnSubmitClicked1" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                        </Popup>
+                        <Popup VerticalOffset="10" HorizontalOffset="200" x:Name="StandardPopup2">
+                            <Border BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" 
+                Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
+                BorderThickness="2" Width="400" Height="150">
+                                <!-- left top right bottom-->
+                                <StackPanel Spacing="20" Background="Gray" Padding="20 0 0 0">
+                                    <StackPanel Orientation="Horizontal" Spacing="5" Padding="0 10 0 0" >
+                                        <TextBlock Text="TRANSACTION DONE SUCCESSFULLY!! THANKYOU" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        
+
+                                    </StackPanel>
+                                    <Button Content="CLOSE"  Click="OnCloseClicked" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                        </Popup>
+                        <!--
+                        <HyperlinkButton
+                            Content="Checkout"
                             Margin="0,8,0,0"
                             Click="OnWindowsCheckoutClicked"
                             Foreground="GhostWhite"
                             HorizontalAlignment="Right"
                             IsEnabled="{x:Bind Path=ViewModel.CheckoutButtonEnabled, Mode=OneWay}"
                             >
-                            <Button.Background>
+                           
+                            <HyperlinkButton.Background>
                                 <LinearGradientBrush
                                     StartPoint="0.5,0"
                                     EndPoint="0.5,1"
@@ -241,11 +323,13 @@ THE SOFTWARE.
                                     <GradientStop Color="#FFFF4040" Offset="0.0" />
                                     <GradientStop Color="#FFA04040" Offset="1.0" />
                                 </LinearGradientBrush>
-                            </Button.Background>
-                        </Button>
+                            </HyperlinkButton.Background>
+                        </HyperlinkButton>
+                            -->
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>
+  
         </Grid>
         <Grid
             x:Name="DialogStage"

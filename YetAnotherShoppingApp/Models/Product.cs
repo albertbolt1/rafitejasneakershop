@@ -33,20 +33,19 @@ namespace YetAnotherShoppingApp
     /// </summary>
     class Product
     {
-        public Product(string imageEmojiText, string title, string description, decimal cost, ShippingCost shippingCost)
+        public Product(string imageText, string title, string description, decimal cost)
         {
-            this.ImageEmojiText = imageEmojiText;
+            this.ImageText = imageText;
             this.Title = title;
             this.Description = description;
             this.Cost = cost;
-            this.ShippingCost = shippingCost;
         }
 
         /// <summary>
         /// The image of the product.
         /// We are using emojis so that we don't have to manage a set of image assets.
         /// </summary>
-        public string ImageEmojiText { get; private set; }
+        public string ImageText { get; private set; }
 
         /// <summary>
         /// The name of the product.
@@ -68,6 +67,6 @@ namespace YetAnotherShoppingApp
         /// <summary>
         /// All the costs associated with shipping this product for different speeds and destinations.
         /// </summary>
-        public ShippingCost ShippingCost { get; private set; }
+
     }
 }

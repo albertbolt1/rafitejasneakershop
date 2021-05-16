@@ -162,7 +162,7 @@ namespace YetAnotherShoppingApp
         /// </summary>
         public async void OnWindowsCheckoutClicked()
         {
-            await WindowsPaymentOperation.CheckoutAsync(this.ShoppingCart);
+  
         }
 
         /// <summary>
@@ -173,9 +173,9 @@ namespace YetAnotherShoppingApp
             _uiDispatcher.RunAsync(
                 CoreDispatcherPriority.Normal,
                 () =>
-            {
-                OnShoppingCartEntriesChanged(sender, args);
-            });
+                {
+                    OnShoppingCartEntriesChanged(sender, args);
+                });
         }
 
         /// <summary>
@@ -190,23 +190,23 @@ namespace YetAnotherShoppingApp
 
             switch (args.Type)
             {
-            case ShoppingCartEntriesChangedType.EntryAdded:
-                var entryViewModel = new ShoppingCartEntryViewModel(this.ShoppingCart, this.ShoppingCart.Entries[args.Index]);
-                _entries.Insert(args.Index, entryViewModel);
-                break;
+                case ShoppingCartEntriesChangedType.EntryAdded:
+                    var entryViewModel = new ShoppingCartEntryViewModel(this.ShoppingCart, this.ShoppingCart.Entries[args.Index]);
+                    _entries.Insert(args.Index, entryViewModel);
+                    break;
 
-            case ShoppingCartEntriesChangedType.EntryRemoved:
-                _entries.RemoveAt(args.Index);
-                break;
+                case ShoppingCartEntriesChangedType.EntryRemoved:
+                    _entries.RemoveAt(args.Index);
+                    break;
 
-            case ShoppingCartEntriesChangedType.EntryUpdated:
-                _entries[args.Index].Update(this.ShoppingCart.Entries[args.Index]);
-                break;
+                case ShoppingCartEntriesChangedType.EntryUpdated:
+                    _entries[args.Index].Update(this.ShoppingCart.Entries[args.Index]);
+                    break;
 
-            case ShoppingCartEntriesChangedType.EntriesReset:
-            default:
-                ResetEntries();
-                break;
+                case ShoppingCartEntriesChangedType.EntriesReset:
+                default:
+                    ResetEntries();
+                    break;
             }
         }
 
@@ -243,8 +243,6 @@ namespace YetAnotherShoppingApp
 
             // Update values.
             this.SubtotalString = PriceStringUtilities.CreatePriceString(costsSummary.ItemsSubtotal);
-            this.EstimatedShippingString = PriceStringUtilities.CreatePriceString(costsSummary.Shipping);
-            this.ShippingTypeString = ShippingTypeStringUtilities.GetFriendlyNameOfShippingType(this.ShoppingCart.ShippingType);
             this.EstimatedTaxString = PriceStringUtilities.CreatePriceString(costsSummary.TotalTax);
             this.TotalCostString = PriceStringUtilities.CreatePriceString(costsSummary.Total);
 
@@ -260,9 +258,9 @@ namespace YetAnotherShoppingApp
         /// Checks to see if the OS supports one of our supported payment methods and enables/disables the 'Checkout'
         /// button based on the result.
         /// </summary>
-        private async void CheckForSupportedPaymentMethods()
+        private  void CheckForSupportedPaymentMethods()
         {
-            bool hasSupportedPaymentMethod = await WindowsPaymentOperation.HasSupportedPaymentMethod();
+            bool hasSupportedPaymentMethod = true;
 
             // Update values.
             this.CheckoutButtonEnabled = hasSupportedPaymentMethod;

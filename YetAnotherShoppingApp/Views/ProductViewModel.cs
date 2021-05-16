@@ -36,11 +36,11 @@ namespace YetAnotherShoppingApp
         {
             this.Product = product;
 
-            decimal shippingCost = this.Product.ShippingCost.Costs[ShippingType.NationalStandard];
+
             this.PriceString = PriceStringUtilities.CreatePriceString(this.Product.Cost);
-            this.ShippingPriceString = $"+ {PriceStringUtilities.CreatePriceString(shippingCost)} s/h";
-            this.ShippingPriceVisibility = shippingCost == 0 ? Visibility.Collapsed : Visibility.Visible;
         }
+  
+           
 
         /// <summary>
         /// The product details.

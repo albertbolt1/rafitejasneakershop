@@ -47,9 +47,8 @@ namespace YetAnotherShoppingApp
     struct ShoppingCartCostsSummary
     {
         public decimal ItemsSubtotal;
-        public decimal Shipping;
+
         public decimal ItemsTax;
-        public decimal ShippingTax;
         public decimal TotalTax;
         public decimal Total;
     }
@@ -60,11 +59,11 @@ namespace YetAnotherShoppingApp
     class ShoppingCart
     {
         private List<ShoppingCartEntry> _shoppingCartEntries = null;
-        private ShippingType _shippingType = ShippingType.NationalStandard;
+
 
         public ShoppingCart()
         {
-            _shippingType = ShippingType.NationalStandard;
+          
             _shoppingCartEntries = new List<ShoppingCartEntry>();
 
             UpdateCostsSummary();
@@ -94,20 +93,7 @@ namespace YetAnotherShoppingApp
         /// <summary>
         /// The type of shipping to be used.
         /// </summary>
-        public ShippingType ShippingType
-        {
-            get
-            {
-                return _shippingType;
-            }
-
-            set
-            {
-                _shippingType = value;
-                UpdateCostsSummary();
-            }
-        }
-
+      
         /// <summary>
         /// The costs summary (e.g. sub-total, tax, etc.) of the shopping cart
         /// </summary>
@@ -130,27 +116,7 @@ namespace YetAnotherShoppingApp
         /// Sets the address to be shipped to.
         /// </summary>
         /// <param name="address"></param>
-        public void SetShippingAddress(PaymentAddress address)
-        {
-            this.ShippingAddress = address;
-
-            if (!DoesAddressRequireInternationalShipping(this.ShippingAddress))
-            {
-                if (!ShippingTypeInfo.NationalShippingTypes.Contains(_shippingType))
-                {
-                    _shippingType = ShippingType.NationalStandard;
-                }
-            }
-            else
-            {
-                if (!ShippingTypeInfo.InternationalShippingTypes.Contains(_shippingType))
-                {
-                    _shippingType = ShippingType.InternationalStandard;
-                }
-            }
-
-            UpdateCostsSummary();
-        }
+      
 
         private void AddOrUpdateEntry(Product product, Func<ShoppingCartEntry, ShoppingCartEntry> updateFunc)
         {
@@ -196,17 +162,17 @@ namespace YetAnotherShoppingApp
             AddOrUpdateEntry(
                 product,
                 (entry) =>
-            {
-                int newQuantity = entry.Quantity + quantity;
-
-                if (newQuantity < 0)
                 {
-                    throw new Exception("Quantity can't go below 0.");
-                }
+                    int newQuantity = entry.Quantity + quantity;
 
-                entry.Quantity = newQuantity;
-                return entry;
-            });
+                    if (newQuantity < 0)
+                    {
+                        throw new Exception("Quantity can't go below 0.");
+                    }
+
+                    entry.Quantity = newQuantity;
+                    return entry;
+                });
         }
 
         /// <summary>
@@ -224,10 +190,10 @@ namespace YetAnotherShoppingApp
             AddOrUpdateEntry(
                 product,
                 (entry) =>
-            {
-                entry.Quantity = quantity;
-                return entry;
-            });
+                {
+                    entry.Quantity = quantity;
+                    return entry;
+                });
         }
 
         private void RemoveIf(Func<ShoppingCartEntry, bool> pred)
@@ -293,21 +259,7 @@ namespace YetAnotherShoppingApp
             return _shoppingCartEntries.Any((entry) => (entry.Product == product));
         }
 
-        public IReadOnlyDictionary<ShippingType, ShoppingCartCostsSummary> CalculateShippingOptions()
-        {
-            Dictionary<ShippingType, ShoppingCartCostsSummary> result = new Dictionary<ShippingType, ShoppingCartCostsSummary>();
 
-            IReadOnlyList<ShippingType> avaliableShippingTypes = DoesAddressRequireInternationalShipping(this.ShippingAddress) ?
-                ShippingTypeInfo.InternationalShippingTypes :
-                ShippingTypeInfo.NationalShippingTypes;
-
-            foreach (ShippingType shippingType in avaliableShippingTypes)
-            {
-                result.Add(shippingType, CalculateCostsSummary(this.Entries, shippingType, this.ShippingAddress));
-            }
-
-            return result;
-        }
 
         /// <summary>
         /// Called when the 'Entries' list has changed, so that listeners can be notified.
@@ -327,34 +279,34 @@ namespace YetAnotherShoppingApp
         /// </summary>
         private void UpdateCostsSummary()
         {
-            this.CostsSummary = CalculateCostsSummary(this.Entries, this.ShippingType, this.ShippingAddress);
+            this.CostsSummary = CalculateCostsSummary(this.Entries);
             this.CostsSummaryChanged?.Invoke(this);
         }
 
         /// <summary>
         /// Calculate the summary of costs (e.g. sub-total, tax, etc.) for the given list of shopping cart entries.
         /// </summary>
-        private static ShoppingCartCostsSummary CalculateCostsSummary(IReadOnlyList<ShoppingCartEntry> entries, ShippingType shippingType, PaymentAddress shippingAddress)
+        private static ShoppingCartCostsSummary CalculateCostsSummary(IReadOnlyList<ShoppingCartEntry> entries)
         {
             ShoppingCartCostsSummary costsSummary = new ShoppingCartCostsSummary();
 
             foreach (ShoppingCartEntry entry in entries)
             {
                 costsSummary.ItemsSubtotal += entry.Quantity * entry.Product.Cost;
-                costsSummary.Shipping += entry.Product.ShippingCost.Costs[shippingType];
+     
             }
 
-            costsSummary.Shipping += ShippingFixedCosts.Costs[shippingType];
+           
 
             CalculateTax(
-                shippingAddress,
+       
                 costsSummary.ItemsSubtotal,
-                costsSummary.Shipping,
-                out costsSummary.ItemsTax,
-                out costsSummary.ShippingTax);
+         
+                out costsSummary.ItemsTax
+             );
 
-            costsSummary.TotalTax = costsSummary.ItemsTax + costsSummary.ShippingTax;
-            costsSummary.Total = costsSummary.ItemsSubtotal + costsSummary.Shipping + costsSummary.TotalTax;
+            costsSummary.TotalTax = costsSummary.ItemsTax ;
+            costsSummary.Total = costsSummary.ItemsSubtotal  + costsSummary.TotalTax;
 
             return costsSummary;
         }
@@ -364,15 +316,11 @@ namespace YetAnotherShoppingApp
         /// We are deliberately applying tax to the shipping cost, so the shipping cost can change based on the
         /// address the user provides.
         /// </summary>
-        private static void CalculateTax(PaymentAddress shippingAddress, decimal subtotal, decimal shippingCost, out decimal subtotalTax, out decimal shippingTax)
+        private static void CalculateTax( decimal subtotal, out decimal subtotalTax)
         {
             subtotalTax = 0;
-            shippingTax = 0;
+      
 
-            if (shippingAddress == null)
-            {
-                return;
-            }
 
             //
             // WARNING!
@@ -380,43 +328,9 @@ namespace YetAnotherShoppingApp
             // THIS CODE IS FOR EXAMPLE PURPOSES ONLY. IT HAS NO BASIS IN REALITY. ANY SIMILARITIES TO ANY
             // REAL TAX CODES IS COINCIDENTAL AND UNINTENTIONAL.
             // 
-            switch (shippingAddress.Country.ToUpperInvariant())
-            {
-            case "US":
-            case "USA":
-            case "UNITED STATES":
-            case "UNITED STATES OF AMERICA":
-                switch(shippingAddress.Region.ToUpperInvariant())
-                {
-                case "WA":
-                case "WASHINGTON":
-                case "WASHINGTON STATE":
-                    subtotalTax = subtotal * 0.2m;
-                    shippingTax = shippingCost * 0.2m;
-                    return;
-                }
-                break;
-            }
+          
         }
 
-        /// <summary>
-        /// Checks if the address assigned to 'this.ShippingAddress' requires international shipping.
-        /// </summary>
-        /// <returns></returns>
-        private static bool DoesAddressRequireInternationalShipping(PaymentAddress address)
-        {
-            string county = address?.Country?.ToUpperInvariant();
-
-            switch (county)
-            {
-            case "US":
-            case "USA":
-            case "UNITED STATES":
-            case "UNITED STATES OF AMERICA":
-                return false;
-            }
-
-            return !string.IsNullOrWhiteSpace(county);
-        }
+       
     }
 }

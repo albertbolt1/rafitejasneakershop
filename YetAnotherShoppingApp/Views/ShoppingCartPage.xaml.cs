@@ -58,9 +58,58 @@ namespace YetAnotherShoppingApp
             this.ViewModel.OnEntryRemoveClick(entryViewModel);
         }
 
+        private void ClosePopupClicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            // if the Popup is open, then close it 
+            if (StandardPopup.IsOpen) { StandardPopup.IsOpen = false; }
+        }
+
         private void OnWindowsCheckoutClicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            this.ViewModel.OnWindowsCheckoutClicked();
+
+            if (!StandardPopup.IsOpen) { StandardPopup.IsOpen = true; }
+            // Frame.Navigate(typeof(Views.BlankPage1), this.ViewModel.TotalCostString);
+            //
+            //
+            //
+            //this.ViewModel.OnWindowsCheckoutClicked();
         }
+        private void OnSubmitClicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+
+            if (StandardPopup.IsOpen) { StandardPopup.IsOpen = false; }
+            if (!StandardPopup1.IsOpen) { StandardPopup1.IsOpen = true; }
+            // Frame.Navigate(typeof(Views.BlankPage1), this.ViewModel.TotalCostString);
+            //
+            //
+            //
+            //this.ViewModel.OnWindowsCheckoutClicked();
+        }
+
+        private void OnCloseClicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            // if the Popup is open, then close it 
+            if (StandardPopup2.IsOpen) { StandardPopup2.IsOpen = false; }
+        }
+        private void OnSubmitClicked1(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+
+    
+            if (StandardPopup1.IsOpen) { StandardPopup1.IsOpen = false; }
+            if (!StandardPopup2.IsOpen) { StandardPopup2.IsOpen = true; }
+
+            // Frame.Navigate(typeof(Views.BlankPage1), this.ViewModel.TotalCostString);
+            //
+            //
+            //
+            //this.ViewModel.OnWindowsCheckoutClicked();
+        }
+
+        private void ScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
+        {
+
+        }
+
+  
     }
 }
