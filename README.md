@@ -16,7 +16,7 @@ the Model-View-ViewModel (MVVM) pattern.
 This sample runs on the Universal Windows Platform (UWP).
 
 
-![](./Images/finalc#app.gif)
+![](https://github.com/albertbolt1/rafitejasneakershop/blob/main/Images/finalc%23app.gif)
 
 ## Universal Windows Platform development
 
