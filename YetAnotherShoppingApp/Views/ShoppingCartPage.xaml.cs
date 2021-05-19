@@ -22,13 +22,18 @@
 //  THE SOFTWARE.
 //  ---------------------------------------------------------------------------------
 
+using MySql.Data.MySqlClient;
 using System;
+using System.Data.SqlClient;
 using Windows.UI.Xaml.Controls;
+
 
 namespace YetAnotherShoppingApp
 {
     public sealed partial class ShoppingCartPage : Page
     {
+        
+        const string ConnectionString = "server = localhost; user id = root; database=payrolldb;Password=albertbolt23;";
         internal ShoppingCartPageViewModel ViewModel { private set; get; }
 
         public ShoppingCartPage()
@@ -58,22 +63,30 @@ namespace YetAnotherShoppingApp
             this.ViewModel.OnEntryRemoveClick(entryViewModel);
         }
 
+        /*
         private void ClosePopupClicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             // if the Popup is open, then close it 
             if (StandardPopup.IsOpen) { StandardPopup.IsOpen = false; }
         }
-
+        */
         private void OnWindowsCheckoutClicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-
-            if (!StandardPopup.IsOpen) { StandardPopup.IsOpen = true; }
-            // Frame.Navigate(typeof(Views.BlankPage1), this.ViewModel.TotalCostString);
+          
+            //using(MySqlConnection sqlconn = new MySqlConnection(ConnectionString))
+            //{
+             //   sqlconn.Open();
+               // someone.Text = sqlconn.State.ToString();
+            //}
+         
+            //if (!StandardPopup.IsOpen) { StandardPopup.IsOpen = true; }
+            Frame.Navigate(typeof(Views.BlankPage1), this.ViewModel.TotalCostString);
             //
             //
             //
             //this.ViewModel.OnWindowsCheckoutClicked();
         }
+        /*
         private void OnSubmitClicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
 
@@ -85,7 +98,7 @@ namespace YetAnotherShoppingApp
             //
             //this.ViewModel.OnWindowsCheckoutClicked();
         }
-
+        
         private void OnCloseClicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             // if the Popup is open, then close it 
@@ -104,12 +117,15 @@ namespace YetAnotherShoppingApp
             //
             //this.ViewModel.OnWindowsCheckoutClicked();
         }
-
+        */
         private void ScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
         {
 
         }
 
   
+
+
+
     }
 }

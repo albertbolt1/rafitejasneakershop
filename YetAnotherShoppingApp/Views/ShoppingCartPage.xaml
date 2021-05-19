@@ -36,7 +36,7 @@ THE SOFTWARE.
             Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
             Padding="8"
             >
-            
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -190,7 +190,7 @@ THE SOFTWARE.
                                 >
                                 <Run Text="+ est. shipping (" /><Run Text="{x:Bind Path=ViewModel.ShippingTypeString, Mode=OneWay, FallbackValue='SHIPPING TYPE'}" /><Run Text="):" />
                             </TextBlock>
-                        
+
                             <TextBlock
                                 Grid.Column="0"
                                 Grid.Row="2"
@@ -220,7 +220,8 @@ THE SOFTWARE.
                                 Text="{x:Bind Path=ViewModel.TotalCostString, Mode=OneWay, FallbackValue='TOTAL'}"
                                 />
                         </Grid>
-                  
+
+                        <!--
                         <StackPanel>
                             <Button Content="Checkout"
                             Margin="0,8,0,0"
@@ -246,7 +247,7 @@ THE SOFTWARE.
                             <Border BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" 
                 Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
                 BorderThickness="2" Width="500" Height="300">
-                                <!-- left top right bottom-->
+                                
                                 <StackPanel Spacing="20" Background="Gray" Padding="20 0 0 0">
                                     <StackPanel Orientation="Horizontal" Spacing="5" Padding="0 10 0 0" >
                                         <TextBlock Text="NAME ON CARD" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -269,7 +270,7 @@ THE SOFTWARE.
                                         <TextBlock Text="CLICK ON SUBMIT TO GET OTP" FontWeight="ExtraBold"  FontSize="10" HorizontalAlignment="Center"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20">
-                                    <Button Content="Close" Click="ClosePopupClicked" HorizontalAlignment="Left"/>
+                                        <Button Content="Close" Click="ClosePopupClicked" HorizontalAlignment="Left"/>
                                         <Button Content="Submit"  HorizontalAlignment="Right" Click="OnSubmitClicked"/>
                                     </StackPanel>
                                 </StackPanel>
@@ -279,12 +280,12 @@ THE SOFTWARE.
                             <Border BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" 
                 Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
                 BorderThickness="2" Width="400" Height="150">
-                                <!-- left top right bottom-->
+                                
                                 <StackPanel Spacing="20" Background="Gray" Padding="20 0 0 0">
                                     <StackPanel Orientation="Horizontal" Spacing="5" Padding="0 10 0 0" >
                                         <TextBlock Text="ENTER OTP" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" />
                                         <TextBox Width="100" FontSize="10" PlaceholderText="6 DIGIT OTP HERE" Margin="10 0 0 0"/>
-                                        
+
                                     </StackPanel>
                                     <Button Content="Submit"  Click="OnSubmitClicked1" HorizontalAlignment="Center"/>
                                 </StackPanel>
@@ -294,18 +295,19 @@ THE SOFTWARE.
                             <Border BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" 
                 Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
                 BorderThickness="2" Width="400" Height="150">
-                                <!-- left top right bottom-->
+                                
                                 <StackPanel Spacing="20" Background="Gray" Padding="20 0 0 0">
                                     <StackPanel Orientation="Horizontal" Spacing="5" Padding="0 10 0 0" >
                                         <TextBlock Text="TRANSACTION DONE SUCCESSFULLY!! THANKYOU" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                        
+
 
                                     </StackPanel>
                                     <Button Content="CLOSE"  Click="OnCloseClicked" HorizontalAlignment="Center"/>
                                 </StackPanel>
                             </Border>
                         </Popup>
-                        <!--
+                        -->
+                   
                         <HyperlinkButton
                             Content="Checkout"
                             Margin="0,8,0,0"
@@ -325,14 +327,15 @@ THE SOFTWARE.
                                 </LinearGradientBrush>
                             </HyperlinkButton.Background>
                         </HyperlinkButton>
-                            -->
+                            
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>
-  
+
         </Grid>
         <Grid
             x:Name="DialogStage"
             />
+       
     </Grid>
 </Page>
