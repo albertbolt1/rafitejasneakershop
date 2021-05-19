@@ -22,9 +22,8 @@
 //  THE SOFTWARE.
 //  ---------------------------------------------------------------------------------
 
-using MySql.Data.MySqlClient;
+
 using System;
-using System.Data.SqlClient;
 using Windows.UI.Xaml.Controls;
 
 
