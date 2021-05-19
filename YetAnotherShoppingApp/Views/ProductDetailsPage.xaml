@@ -53,13 +53,13 @@ THE SOFTWARE.
                 />
             <StackPanel Orientation="Horizontal">
                 <ScrollViewer x:Name="imageView_scroller" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" MinZoomFactor="1" MaxZoomFactor="2" ZoomMode="Enabled">
-                    <Image Source="{x:Bind Path=ViewModel.Product.ImageText}" Height="200" Width="200" Margin="100,0,100,0"/>
+                    <Image Source="{x:Bind Path=ViewModel.Product.ImageText1}" Height="200" Width="200" Margin="100,0,100,0"/>
                 </ScrollViewer>
                 <ScrollViewer x:Name="imageView_scroller1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" MinZoomFactor="1" MaxZoomFactor="2" ZoomMode="Enabled">
                     <Image Source="{x:Bind Path=ViewModel.Product.ImageText}" Height="200" Width="200" Margin="100,0,100,0"/>
                 </ScrollViewer>
                 <ScrollViewer x:Name="imageView_scroller2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" MinZoomFactor="1" MaxZoomFactor="2" ZoomMode="Enabled">
-                    <Image Source="{x:Bind Path=ViewModel.Product.ImageText}" Height="200" Width="200" Margin="100,0,100,0"/>
+                    <Image Source="{x:Bind Path=ViewModel.Product.ImageText2}" Height="200" Width="200" Margin="100,0,100,0"/>
                 </ScrollViewer>
             </StackPanel>
 

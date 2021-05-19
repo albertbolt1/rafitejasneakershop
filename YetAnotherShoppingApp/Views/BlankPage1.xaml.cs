@@ -110,7 +110,7 @@ namespace YetAnotherShoppingApp.Views
         private void OnCloseClicked2(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             // if the Popup is open, then close it 
-            if (StandardPopup4.IsOpen) { StandardPopup4.IsOpen = false; }
+            if (StandardPopup3.IsOpen) { StandardPopup4.IsOpen = false; }
         }
         private void OnSubmitClicked1(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {

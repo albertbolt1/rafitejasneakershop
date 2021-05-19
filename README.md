@@ -15,6 +15,9 @@ the Model-View-ViewModel (MVVM) pattern.
 
 This sample runs on the Universal Windows Platform (UWP).
 
+
+![](Images/finalc#app.gif)
+
 ## Universal Windows Platform development
 
 Requirements:

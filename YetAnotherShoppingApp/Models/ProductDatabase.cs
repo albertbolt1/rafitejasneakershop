@@ -36,12 +36,12 @@ namespace YetAnotherShoppingApp
         /// </summary>
         public static readonly Product[] ProductList = new Product[]
         {
-            new Product("/Assets/Jordan.jpg", "Jordan 1 RED BLACK", "Red and black classic collection", 80.00m),
-            new Product("/Assets/Jordan2.jpg", "Jordan 2 BLACK", "Black and grey total comfort", 100.50m),
-            new Product("/Assets/Jordan3.jpg", "Jordan 3 BLACK GREY", "black and grey print , crazy!!", 100.00m),
-            new Product("/Assets/Jordan4.jpg", "Jordan 4 RED WHITE", "crazy colorway , Special edition", 110.00m),
-            new Product("/Assets/Jordan5.jpg", "JORDAN 5 WHITE BLUE", "A depressing frown that brings you back down to reality.", 70.00m),
-            new Product("/Assets/Jordan6.jpg", "JORDAN 6 RED WHITE", "Will fix everything.", 90.00m)
+            new Product("/Assets/Jordan.jpg","/Assets/Jordan.jpg","/Assets/Jordan.jpg", "Jordan 1 RED BLACK", "Red and black classic collection", 80.00m),
+            new Product("/Assets/Jordan2.jpg","/Assets/Jordan2.jpg","/Assets/Jordan2.jpg", "Jordan 2 BLACK", "Black and grey total comfort", 100.50m),
+            new Product("/Assets/Jordan3.jpg","/Assets/jordan3side.jpg","/Assets/jordan3leg.jpg", "Jordan 3 BLACK GREY", "black and grey print , crazy!!", 100.00m),
+            new Product("/Assets/Jordan4.jpg","/Assets/Jordan4.jpg","/Assets/Jordan4.jpg", "Jordan 4 RED WHITE", "crazy colorway , Special edition", 110.00m),
+            new Product("/Assets/Jordan5.jpg","/Assets/Jordan5.jpg","/Assets/Jordan5.jpg", "JORDAN 5 WHITE BLUE", "A depressing frown that brings you back down to reality.", 70.00m),
+            new Product("/Assets/Jordan6.jpg","/Assets/Jordan6.jpg","/Assets/Jordan6.jpg", "JORDAN 6 RED WHITE", "Will fix everything.", 90.00m)
         };
     }
 }
